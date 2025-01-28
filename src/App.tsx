@@ -1,59 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import ThemeSwitcher from './components/ThemeSwitcher'
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="h-screen bg-base-100">
-      <div className="h-full max-w-3xl mx-auto p-8 text-center">
-        <div className="h-full flex flex-col items-center justify-center">
-          <div className="flex justify-center gap-1 mt-16">
-            <a href="https://vite.dev" target="_blank">
-              <img 
-                src={viteLogo} 
-                className="h-24 p-6 transition-all hover:drop-shadow-[0_0_2em_rgba(100,108,255,0.667)]"
-                alt="Vite logo" 
-              />
-            </a>
-            <a href="https://react.dev" target="_blank">
-              <img 
-                src={reactLogo} 
-                className="h-24 p-6 animate-[spin_20s_linear_infinite] hover:drop-shadow-[0_0_2em_rgba(97,218,251,0.667)]"
-                alt="React logo" 
-              />
-            </a>
+    <HashRouter>
+      <div className="h-screen bg-base-100">
+        <div className="navbar bg-base-200">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
+              </div>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/projects">Projects</Link></li>
+              </ul>
+            </div>
+            <Link to="/" className="btn btn-ghost text-xl">CodeByJared</Link>
           </div>
-          
-          <div className="w-full space-y-8 flex flex-col items-center">
-            <h1 className="text-5xl font-bold">Vite + React</h1>
-            
-            <div className="space-y-4">
-              <button 
-                onClick={() => setCount((count) => count + 1)}
-                className="btn btn-primary"
-              >
-                count is {count}
-              </button>
-              <p>
-                Edit <code className="badge badge-neutral">src/App.tsx</code> and save to test HMR
-              </p>
-            </div>
-            
-            <p className="text-base-content/60">
-              Click on the Vite and React logos to learn more
-            </p>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-2">Theme Selection:</h2>
-              <ThemeSwitcher />
-            </div>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
+            </ul>
           </div>
         </div>
+
+        <div className="h-[calc(100vh-4rem)] max-w-3xl mx-auto p-8">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </HashRouter>
   )
 }
 
