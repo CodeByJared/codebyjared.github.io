@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import ThemeSwitcher from './components/ThemeSwitcher'
 
+// Getting it to hopefully not white screen on first load
+
 function App() {
   const [count, setCount] = useState(0)
 
